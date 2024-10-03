@@ -15,7 +15,7 @@ namespace APIsJWTAuthentication.Controllers
             this._service = service;
         }
 
-        [HttpPost("register")]
+        [HttpPost("Register")]
         public async Task<IActionResult> Register([FromBody] RegisterModel model)
         {
             if (!ModelState.IsValid)
@@ -29,7 +29,7 @@ namespace APIsJWTAuthentication.Controllers
             return Ok(result);
         }
 
-        [HttpPost("getToken")]
+        [HttpPost("GetToken")]
         public async Task<IActionResult> GetToken([FromBody] TokenRequestModel model)
         {
             if (!ModelState.IsValid)
@@ -43,7 +43,7 @@ namespace APIsJWTAuthentication.Controllers
             return Ok(result);
         }
 
-        [HttpPost("addRole")]
+        [HttpPost("AddRole")]
         public async Task<IActionResult> AddRoleAsync([FromBody] AddRoleModel model)
         {
             if (!ModelState.IsValid)
