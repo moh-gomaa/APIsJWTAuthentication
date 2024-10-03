@@ -18,29 +18,40 @@ namespace APIsJWTAuthentication.Controllers
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] RegisterModel model)
         {
-            if(!ModelState.IsValid)
+            if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
             var result = await _service.RegisterAsync(model);
 
-            if(!result.IsAuthenticated)
+            if (!result.IsAuthenticated)
                 return BadRequest(result.Message);
 
             return Ok(result);
         }
-        
+
         [HttpPost("getToken")]
         public async Task<IActionResult> GetToken([FromBody] TokenRequestModel model)
         {
-            if(!ModelState.IsValid)
+            if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
             var result = await _service.GetTokenAsync(model);
 
-            if(!result.IsAuthenticated)
+            if (!result.IsAuthenticated)
                 return BadRequest(result.Message);
 
             return Ok(result);
+        }
+
+        [HttpPost("addRole")]
+        public async Task<IActionResult> AddRoleAsync([FromBody] AddRoleModel model)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var resultMsg = await _service.AddRoleAsync(model);
+
+            return string.IsNullOrEmpty(resultMsg) ? Ok() : BadRequest(resultMsg);
         }
     }
 }
